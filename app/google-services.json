@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "507365652239",
+    "project_id": "my-grocery-shopping-cart",
+    "storage_bucket": "my-grocery-shopping-cart.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507365652239:android:e4dca9133149b7b321b07a",
+        "android_client_info": {
+          "package_name": "com.ajmalyousufza.mygroceryshoppingcart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507365652239-ijgf8vucqpco5smon4snd840n8gi64bm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDABKW3UgPP20OK53oaCPJfJOu3Xz4gD9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507365652239-ijgf8vucqpco5smon4snd840n8gi64bm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
