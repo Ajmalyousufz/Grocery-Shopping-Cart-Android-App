@@ -1,6 +1,7 @@
 package com.ajmalyousufza.mygroceryshoppingcart.adpters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajmalyousufza.mygroceryshoppingcart.R;
+import com.ajmalyousufza.mygroceryshoppingcart.activities.ViewAllActivity;
 import com.ajmalyousufza.mygroceryshoppingcart.models.PopularModel;
 import com.bumptech.glide.Glide;
 
@@ -40,6 +42,12 @@ public class PopularAdatper extends RecyclerView.Adapter<PopularAdatper.ViewHold
         holder.rating.setText(popularModelList.get(position).getRating());
         holder.description.setText(popularModelList.get(position).getDescription());
         holder.discount.setText(popularModelList.get(position).getDiscount());
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, ViewAllActivity.class);
+            intent.putExtra("type",popularModelList.get(position).getType());
+            context.startActivity(intent);
+        });
 
     }
 

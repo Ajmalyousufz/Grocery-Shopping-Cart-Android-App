@@ -12,17 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyGroceryShoppingCart">
         <activity
+            android:name=".activities.ViewAllActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.SplashScreenActivity"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activities.RegistrationActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="false" />
