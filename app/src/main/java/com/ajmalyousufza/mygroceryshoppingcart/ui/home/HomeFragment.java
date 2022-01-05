@@ -21,9 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ajmalyousufza.mygroceryshoppingcart.R;
 import com.ajmalyousufza.mygroceryshoppingcart.adpters.HomeAdapter;
 import com.ajmalyousufza.mygroceryshoppingcart.adpters.PopularAdatper;
+import com.ajmalyousufza.mygroceryshoppingcart.adpters.RecommendedAdapter;
 import com.ajmalyousufza.mygroceryshoppingcart.databinding.FragmentHomeBinding;
 import com.ajmalyousufza.mygroceryshoppingcart.models.HomeCategory;
 import com.ajmalyousufza.mygroceryshoppingcart.models.PopularModel;
+import com.ajmalyousufza.mygroceryshoppingcart.models.RecommendedModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,16 +37,21 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView pop_rec,home_cat_rec;
+    RecyclerView pop_rec,home_cat_rec,recommended_recycler;
     FirebaseFirestore db;
 
     //Popular item
     List<PopularModel> popularModelList;
     PopularAdatper pop_adatper;
 
-    //Home Category
+    //Home explore Category
     List<HomeCategory> homeCategoryList;
     HomeAdapter homeAdapter;
+
+    //Recommended category
+    List<RecommendedModel> recommendedModelList;
+    RecommendedAdapter recommendedAdapter;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +59,7 @@ public class HomeFragment extends Fragment {
 
        pop_rec = root.findViewById(R.id.pop_rec);
         home_cat_rec = root.findViewById(R.id.explore_rec);
+        recommended_recycler = root.findViewById(R.id.recommented_rec);
 
        db = FirebaseFirestore.getInstance();
 
@@ -95,6 +103,30 @@ public class HomeFragment extends Fragment {
                                 HomeCategory homeCategory = document.toObject(HomeCategory.class);
                                 homeCategoryList.add(homeCategory);
                                 homeAdapter.notifyDataSetChanged();
+                                //Toast.makeText(getActivity(), "Successfull.", Toast.LENGTH_SHORT).show();
+
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Error getting documents."+task.getException(), Toast.LENGTH_SHORT).show();
+                        }}});
+
+        //Recommended Products
+
+        recommended_recycler.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        recommendedModelList = new ArrayList<>();
+        recommendedAdapter = new RecommendedAdapter(getActivity(),recommendedModelList);
+        recommended_recycler.setAdapter(recommendedAdapter);
+
+        db.collection("Recommended Products")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                RecommendedModel recommendedModel = document.toObject(RecommendedModel.class);
+                                recommendedModelList.add(recommendedModel);
+                                recommendedAdapter.notifyDataSetChanged();
                                 //Toast.makeText(getActivity(), "Successfull.", Toast.LENGTH_SHORT).show();
 
                             }
