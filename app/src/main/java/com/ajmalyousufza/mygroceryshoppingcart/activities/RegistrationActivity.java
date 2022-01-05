@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ajmalyousufza.mygroceryshoppingcart.R;
-import com.ajmalyousufza.mygroceryshoppingcart.UserModel;
+import com.ajmalyousufza.mygroceryshoppingcart.models.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

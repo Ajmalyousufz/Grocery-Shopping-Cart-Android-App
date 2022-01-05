@@ -33,6 +33,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             Toast.makeText(SplashScreenActivity.this, "You Already registered", Toast.LENGTH_SHORT).show();
             progressBar.setVisibility(View.VISIBLE);
             startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+            finish();
         }
 
         login_.setOnClickListener(view -> {

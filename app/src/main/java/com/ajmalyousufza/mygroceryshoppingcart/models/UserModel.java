@@ -1,4 +1,4 @@
-package com.ajmalyousufza.mygroceryshoppingcart;
+package com.ajmalyousufza.mygroceryshoppingcart.models;
 
 public class UserModel {
     String name;

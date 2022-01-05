@@ -22,4 +22,24 @@
         android:name="com.ajmalyousufza.mygroceryshoppingcart.ui.Category.CategoryFragment"
         android:label="@string/category"
         tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/nav_offers"
+        android:name="com.ajmalyousufza.mygroceryshoppingcart.OfferFragment"
+        android:label="@string/offers"
+        tools:layout="@layout/fragment_offer" />
+    <fragment
+        android:id="@+id/nav_newproducts"
+        android:name="com.ajmalyousufza.mygroceryshoppingcart.NewProductFragment"
+        android:label="@string/new_products"
+        tools:layout="@layout/fragment_new_product" />
+    <fragment
+        android:id="@+id/nav_myorders"
+        android:name="com.ajmalyousufza.mygroceryshoppingcart.MyOrdersFragment"
+        android:label="@string/my_orders"
+        tools:layout="@layout/fragment_my_orders" />
+    <fragment
+        android:id="@+id/nav_mycart"
+        android:name="com.ajmalyousufza.mygroceryshoppingcart.MyCartFragment"
+        android:label="@string/my_cart"
+        tools:layout="@layout/fragment_my_cart" />
 </navigation>
