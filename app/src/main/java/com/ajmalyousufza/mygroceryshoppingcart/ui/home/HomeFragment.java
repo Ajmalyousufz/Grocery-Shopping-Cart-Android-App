@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,9 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
+    ScrollView scrollView;
+    ProgressBar progressBar;
+
     RecyclerView pop_rec,home_cat_rec,recommended_recycler;
     FirebaseFirestore db;
 
@@ -60,6 +65,11 @@ public class HomeFragment extends Fragment {
        pop_rec = root.findViewById(R.id.pop_rec);
         home_cat_rec = root.findViewById(R.id.explore_rec);
         recommended_recycler = root.findViewById(R.id.recommented_rec);
+        scrollView = root.findViewById(R.id.scroll_view_home);
+        progressBar = root.findViewById(R.id.progressbar_home);
+
+        progressBar.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.GONE);
 
        db = FirebaseFirestore.getInstance();
 
@@ -79,6 +89,8 @@ public class HomeFragment extends Fragment {
                                 PopularModel popularModel = document.toObject(PopularModel.class);
                                 popularModelList.add(popularModel);
                                 pop_adatper.notifyDataSetChanged();
+                                progressBar.setVisibility(View.GONE);
+                                scrollView.setVisibility(View.VISIBLE);
                                 //Toast.makeText(getActivity(), "Successfull.", Toast.LENGTH_SHORT).show();
 
                             }
