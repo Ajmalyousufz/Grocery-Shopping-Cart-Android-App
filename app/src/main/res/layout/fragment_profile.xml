@@ -6,18 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
-    <TextView
-        android:id="@+id/text_gallery"
+    <ImageView
+        android:id="@+id/profile_image"
         android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/profile"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:inputType="textPersonName"
+        android:id="@+id/profile_name"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:text="Profile"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edittext_bg"
+        android:hint="Your Name"
+        android:elevation="3dp"
+        android:padding="13dp"
+        android:textColorHint="#807676"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:drawablePadding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_image"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent=".8" />
+    <EditText
+        android:inputType="textEmailAddress"
+        android:id="@+id/profile_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edittext_bg"
+        android:hint="Your Email"
+        android:elevation="3dp"
+        android:textColorHint="#807676"
+        android:padding="13dp"
+        android:drawableLeft="@drawable/account"
+        android:drawablePadding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_name"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent=".8" />
+    <EditText
+        android:inputType="phone"
+        android:id="@+id/profile_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edittext_bg"
+        android:hint="Your Phone Number"
+        android:elevation="3dp"
+        android:padding="13dp"
+        android:textColorHint="#807676"
+        android:drawableLeft="@drawable/ic_baseline_local_phone_24"
+        android:drawablePadding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_email"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent=".8" />
+
+    <EditText
+        android:inputType="textPostalAddress"
+        android:id="@+id/profile_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edittext_bg"
+        android:drawableLeft="@drawable/ic_baseline_location_on_24"
+        android:drawablePadding="10dp"
+        android:elevation="3dp"
+        android:hint="Your Address"
+        android:padding="13dp"
+        android:textColorHint="#807676"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_phone"
+        app:layout_constraintWidth_percent=".8" />
+
+    <Button
+        android:id="@+id/profile_updadte_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:text="Update"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/profile_address" />
 </androidx.constraintlayout.widget.ConstraintLayout>
