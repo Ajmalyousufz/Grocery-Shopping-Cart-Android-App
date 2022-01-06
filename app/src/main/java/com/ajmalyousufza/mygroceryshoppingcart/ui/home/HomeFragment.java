@@ -3,10 +3,13 @@ package com.ajmalyousufza.mygroceryshoppingcart.ui.home;
 import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -24,12 +27,15 @@ import com.ajmalyousufza.mygroceryshoppingcart.R;
 import com.ajmalyousufza.mygroceryshoppingcart.adpters.HomeAdapter;
 import com.ajmalyousufza.mygroceryshoppingcart.adpters.PopularAdatper;
 import com.ajmalyousufza.mygroceryshoppingcart.adpters.RecommendedAdapter;
+import com.ajmalyousufza.mygroceryshoppingcart.adpters.ViewAllAdapter;
 import com.ajmalyousufza.mygroceryshoppingcart.databinding.FragmentHomeBinding;
 import com.ajmalyousufza.mygroceryshoppingcart.models.HomeCategory;
 import com.ajmalyousufza.mygroceryshoppingcart.models.PopularModel;
 import com.ajmalyousufza.mygroceryshoppingcart.models.RecommendedModel;
+import com.ajmalyousufza.mygroceryshoppingcart.models.ViewAllModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -44,6 +50,12 @@ public class HomeFragment extends Fragment {
 
     RecyclerView pop_rec,home_cat_rec,recommended_recycler;
     FirebaseFirestore db;
+
+    ///////////Search Box///////////
+    EditText search_box;
+    private List<ViewAllModel> viewAllModelList;
+    private RecyclerView recyclerView_search;
+    private ViewAllAdapter viewAllAdapter_search;
 
     //Popular item
     List<PopularModel> popularModelList;
@@ -146,7 +158,60 @@ public class HomeFragment extends Fragment {
                             Toast.makeText(getActivity(), "Error getting documents."+task.getException(), Toast.LENGTH_SHORT).show();
                         }}});
 
+        search_box = root.findViewById(R.id.search_box);
+        viewAllModelList = new ArrayList<>();
+        viewAllAdapter_search = new ViewAllAdapter(getContext(),viewAllModelList);
+        recyclerView_search = root.findViewById(R.id.search_recycleview);
+        recyclerView_search.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView_search.setAdapter(viewAllAdapter_search);
+        recyclerView_search.setHasFixedSize(true);
+        search_box.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(editable.toString().isEmpty()){
+                    viewAllModelList.clear();
+                    viewAllAdapter_search.notifyDataSetChanged();
+                }
+                else{
+                    searchProducto(editable.toString());
+                }
+            }
+        });
+
        return root;
+    }
+
+    private void searchProducto(String type) {
+
+        if(!type.isEmpty()){
+            db.collection("Add Products").whereEqualTo("type",type)
+                    .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if(task.isSuccessful() && task.getResult()!=null){
+                        viewAllModelList.clear();
+                        viewAllAdapter_search.notifyDataSetChanged();
+
+                        for(DocumentSnapshot doc : task.getResult().getDocuments()){
+                            ViewAllModel viewAllModel = doc.toObject(ViewAllModel.class);
+                            viewAllModelList.add(viewAllModel);
+                            viewAllAdapter_search.notifyDataSetChanged();
+                        }
+                    }
+                }
+            });
+        }
+
     }
 
 }
