@@ -1,6 +1,8 @@
 package com.ajmalyousufza.mygroceryshoppingcart.models;
 
-public class MyCartModel {
+import java.io.Serializable;
+
+public class MyCartModel implements Serializable {
 
     String productName;
     String productPrice;
@@ -8,6 +10,7 @@ public class MyCartModel {
     String productTime;
     String totalQuantity;
     int totalPrice;
+    String documentId;
 
     public MyCartModel() {
     }
@@ -19,6 +22,14 @@ public class MyCartModel {
         this.productTime = productTime;
         this.totalQuantity = totalQuantity;
         this.totalPrice = totalPrice;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 
     public String getProductName() {

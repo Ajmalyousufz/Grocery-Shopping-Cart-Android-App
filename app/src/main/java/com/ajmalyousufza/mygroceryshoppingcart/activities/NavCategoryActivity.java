@@ -41,7 +41,7 @@ public class NavCategoryActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         String type = getIntent().getStringExtra("type");
 
-        progressBar = findViewById(R.id.progressbar);
+        progressBar = findViewById(R.id.prgressbar);
         progressBar.setVisibility(View.VISIBLE);
 
         cat_detailed_recyclerview = findViewById(R.id.nav_category_recyclerview);

@@ -15,10 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ajmalyousufza.mygroceryshoppingcart.activities.PlaceOrderActivity;
 import com.ajmalyousufza.mygroceryshoppingcart.adpters.MyCartAdapter;
 import com.ajmalyousufza.mygroceryshoppingcart.models.MyCartModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,6 +30,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +41,7 @@ public class MyCartFragment extends Fragment {
 
     ProgressBar progressBar;
     TextView overTotalAmount;
+    Button buy_now_btn;
 
     RecyclerView mycart_recyclerview;
     MyCartAdapter myCartAdapter;
@@ -54,6 +58,7 @@ public class MyCartFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_my_cart, container, false);
 
+        buy_now_btn = root.findViewById(R.id.mycart_buy_btn);
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         progressBar = root.findViewById(R.id.prgressbar);
@@ -68,14 +73,20 @@ public class MyCartFragment extends Fragment {
         myCartAdapter = new MyCartAdapter(getActivity(),myCartModelList);
         mycart_recyclerview.setAdapter(myCartAdapter);
 
-        firestore.collection("Add to Cart").document(auth.getCurrentUser().getUid())
-                .collection("Current User").get()
+        firestore.collection("Current User").document(auth.getCurrentUser().getUid())
+                .collection("Add to Cart").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
                             for(DocumentSnapshot documentSnapshot: task.getResult().getDocuments()){
+
+                                String documentId = documentSnapshot.getId();
+
                                 MyCartModel cartModel = documentSnapshot.toObject((MyCartModel.class));
+
+                                cartModel.setDocumentId(documentId);
+
                                 myCartModelList.add(cartModel);
                                 myCartAdapter.notifyDataSetChanged();
                                 progressBar.setVisibility(View.GONE);
@@ -88,6 +99,11 @@ public class MyCartFragment extends Fragment {
                     }
                 });
 
+        buy_now_btn.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), PlaceOrderActivity.class);
+            intent.putExtra("itemlist", (Serializable) myCartModelList);
+            startActivity(intent);
+        });
 
         return root;
     }
