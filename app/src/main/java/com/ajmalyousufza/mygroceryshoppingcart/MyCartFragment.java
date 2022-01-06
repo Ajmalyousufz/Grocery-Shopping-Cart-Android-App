@@ -67,8 +67,8 @@ public class MyCartFragment extends Fragment {
         mycart_recyclerview.setVisibility(View.GONE);
         mycart_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         overTotalAmount = root.findViewById(R.id.my_cart_total_prize);
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver
-                (mMessageReceiver,new IntentFilter("MytotoalAmount"));
+//        LocalBroadcastManager.getInstance(getActivity()).registerReceiver
+//                (mMessageReceiver,new IntentFilter("MytotoalAmount"));
         myCartModelList = new ArrayList<>();
         myCartAdapter = new MyCartAdapter(getActivity(),myCartModelList);
         mycart_recyclerview.setAdapter(myCartAdapter);
@@ -92,6 +92,8 @@ public class MyCartFragment extends Fragment {
                                 progressBar.setVisibility(View.GONE);
                                 mycart_recyclerview.setVisibility(View.VISIBLE);
                             }
+
+                            calculateTotalList(myCartModelList);
                         }
                         else {
                             Toast.makeText(getActivity(), "Error to receive cart items", Toast.LENGTH_SHORT).show();
@@ -107,12 +109,20 @@ public class MyCartFragment extends Fragment {
 
         return root;
     }
-    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
 
-            int billAmount = intent.getIntExtra("totalAmount",0);
-            overTotalAmount.setText("Total Bill "+billAmount+"$");
+    private void calculateTotalList(List<MyCartModel> myCartModelList) {
+        double totolAmount = 0.0;
+        for(MyCartModel myCartModel : myCartModelList){
+            totolAmount+=myCartModel.getTotalPrice();
         }
-    };
+        overTotalAmount.setText("Total Amount : "+totolAmount);
+    }
+//    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//
+//            int billAmount = intent.getIntExtra("totalAmount",0);
+//            overTotalAmount.setText("Total Bill "+billAmount+"$");
+//        }
+//    };
 }
