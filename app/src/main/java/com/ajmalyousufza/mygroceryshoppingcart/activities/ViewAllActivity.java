@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.ajmalyousufza.mygroceryshoppingcart.R;
 import com.ajmalyousufza.mygroceryshoppingcart.adpters.ViewAllAdapter;
@@ -26,16 +28,22 @@ public class ViewAllActivity extends AppCompatActivity {
     RecyclerView view_all_reclerview;
     ViewAllAdapter viewAllAdapter;
     List<ViewAllModel> viewAllModelList;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all);
 
+        progressBar = findViewById(R.id.prgressbar);
+        progressBar.setVisibility(View.VISIBLE);
+
         db = FirebaseFirestore.getInstance();
         String type = getIntent().getStringExtra("type");
         view_all_reclerview = findViewById(R.id.view_all_recyclerview);
+        view_all_reclerview.setVisibility(View.GONE);
         view_all_reclerview.setLayoutManager(new LinearLayoutManager(this));
+
         viewAllModelList = new ArrayList<>();
         viewAllAdapter = new ViewAllAdapter(this,viewAllModelList);
         view_all_reclerview.setAdapter(viewAllAdapter);
@@ -51,6 +59,8 @@ public class ViewAllActivity extends AppCompatActivity {
                         ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
                         viewAllModelList.add(viewAllModel);
                         viewAllAdapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        view_all_reclerview.setVisibility(View.VISIBLE);
                     }
                 }
             });
@@ -67,6 +77,8 @@ public class ViewAllActivity extends AppCompatActivity {
                                 ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
                                 viewAllModelList.add(viewAllModel);
                                 viewAllAdapter.notifyDataSetChanged();
+                                progressBar.setVisibility(View.GONE);
+                                view_all_reclerview.setVisibility(View.VISIBLE);
                             }
                         }
                     });
@@ -83,6 +95,8 @@ public class ViewAllActivity extends AppCompatActivity {
                                 ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
                                 viewAllModelList.add(viewAllModel);
                                 viewAllAdapter.notifyDataSetChanged();
+                                progressBar.setVisibility(View.GONE);
+                                view_all_reclerview.setVisibility(View.VISIBLE);
                             }
                         }
                     });
@@ -99,6 +113,8 @@ public class ViewAllActivity extends AppCompatActivity {
                                 ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
                                 viewAllModelList.add(viewAllModel);
                                 viewAllAdapter.notifyDataSetChanged();
+                                progressBar.setVisibility(View.GONE);
+                                view_all_reclerview.setVisibility(View.VISIBLE);
                             }
                         }
                     });
@@ -115,6 +131,8 @@ public class ViewAllActivity extends AppCompatActivity {
                                 ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
                                 viewAllModelList.add(viewAllModel);
                                 viewAllAdapter.notifyDataSetChanged();
+                                progressBar.setVisibility(View.GONE);
+                                view_all_reclerview.setVisibility(View.VISIBLE);
                             }
                         }
                     });

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,7 @@ public class CategoryFragment extends Fragment {
     RecyclerView recyclerView;
     NavCategoryAdapter navCategoryAdapter;
     FirebaseFirestore db;
+    ProgressBar progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -39,7 +41,11 @@ public class CategoryFragment extends Fragment {
       View root = inflater.inflate(R.layout.fragment_category,container,false);
 
       db = FirebaseFirestore.getInstance();
+
+        progressBar = root.findViewById(R.id.prgressbar);
+        progressBar.setVisibility(View.VISIBLE);
       recyclerView = root.findViewById(R.id.category_recycler_id);
+      recyclerView.setVisibility(View.GONE);
 
         //Nav Category items
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
@@ -57,8 +63,8 @@ public class CategoryFragment extends Fragment {
                                 NavCategoryModel navCategoryModel = document.toObject(NavCategoryModel.class);
                                 navCategoryModelList.add(navCategoryModel);
                                 navCategoryAdapter.notifyDataSetChanged();
-                                //progressBar.setVisibility(View.GONE);
-                                //scrollView.setVisibility(View.VISIBLE);
+                                progressBar.setVisibility(View.GONE);
+                                recyclerView.setVisibility(View.VISIBLE);
                                 //Toast.makeText(getActivity(), "Successfull.", Toast.LENGTH_SHORT).show();
 
                             }

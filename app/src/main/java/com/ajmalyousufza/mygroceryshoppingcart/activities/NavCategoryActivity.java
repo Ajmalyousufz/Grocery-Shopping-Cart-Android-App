@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.ajmalyousufza.mygroceryshoppingcart.R;
@@ -30,6 +31,7 @@ public class NavCategoryActivity extends AppCompatActivity {
     List<NavCategoryDetailedModel> navCategoryDetailedModelList;
     NavCategoryDetailedAdapter navCategoryDetailedAdapter;
     FirebaseFirestore db;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,11 @@ public class NavCategoryActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         String type = getIntent().getStringExtra("type");
 
+        progressBar = findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.VISIBLE);
+
         cat_detailed_recyclerview = findViewById(R.id.nav_category_recyclerview);
+        cat_detailed_recyclerview.setVisibility(View.GONE);
         cat_detailed_recyclerview.setLayoutManager(new LinearLayoutManager(this));
         navCategoryDetailedModelList = new ArrayList<>();
         navCategoryDetailedAdapter = new NavCategoryDetailedAdapter(this,navCategoryDetailedModelList);
@@ -56,6 +62,8 @@ public class NavCategoryActivity extends AppCompatActivity {
                                 NavCategoryDetailedModel navCategoryDetailedModel = documentSnapshot.toObject(NavCategoryDetailedModel.class);
                                 navCategoryDetailedModelList.add(navCategoryDetailedModel);
                                 navCategoryDetailedAdapter.notifyDataSetChanged();
+                                progressBar.setVisibility(View.GONE);
+                                cat_detailed_recyclerview.setVisibility(View.VISIBLE);
                             }
                         }
                     });
