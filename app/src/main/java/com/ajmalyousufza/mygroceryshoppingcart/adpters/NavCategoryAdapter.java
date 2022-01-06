@@ -1,6 +1,7 @@
 package com.ajmalyousufza.mygroceryshoppingcart.adpters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajmalyousufza.mygroceryshoppingcart.R;
+import com.ajmalyousufza.mygroceryshoppingcart.activities.DetailedActivity;
+import com.ajmalyousufza.mygroceryshoppingcart.activities.NavCategoryActivity;
+import com.ajmalyousufza.mygroceryshoppingcart.activities.ViewAllActivity;
 import com.ajmalyousufza.mygroceryshoppingcart.models.NavCategoryModel;
 import com.bumptech.glide.Glide;
 
@@ -39,6 +43,12 @@ public class NavCategoryAdapter extends RecyclerView.Adapter<NavCategoryAdapter.
           holder.name.setText(navCategoryModelList.get(position).getName());
           holder.description.setText(navCategoryModelList.get(position).getDescription());
           holder.discount.setText(navCategoryModelList.get(position).getDiscount());
+
+          holder.itemView.setOnClickListener(view -> {
+              Intent intent = new Intent(context, NavCategoryActivity.class);
+              intent.putExtra("type",navCategoryModelList.get(position).getType());
+              context.startActivity(intent);
+          });
 
       }
 

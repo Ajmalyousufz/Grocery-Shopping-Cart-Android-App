@@ -8,8 +8,10 @@
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/drawable/edittext_background.xml" value="0.13541666666666666" />
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/drawable/loaderprogress.xml" value="0.2546875" />
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/font/aclonica.xml" value="0.26875" />
+        <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/activity_detailed.xml" value="0.1671195652173913" />
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/activity_login.xml" value="0.17346014492753623" />
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/activity_main.xml" value="0.17346014492753623" />
+        <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/activity_nav_category.xml" value="0.1671195652173913" />
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/activity_registration.xml" value="0.264" />
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/activity_splash_screen.xml" value="0.2" />
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/activity_view_all.xml" value="0.17346014492753623" />
@@ -24,6 +26,8 @@
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/fragment_slideshow.xml" value="0.17346014492753623" />
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/home_cat_items.xml" value="0.17346014492753623" />
+        <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/my_cart_item.xml" value="0.264" />
+        <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/nav_category_detailed_item.xml" value="0.1671195652173913" />
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/nav_category_item.xml" value="0.17346014492753623" />
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/popular_item.xml" value="0.17346014492753623" />
         <entry key="..\:/Users/Muhammed ajmal y/AndroidStudioProjects/MyGroceryshoppingcart/app/src/main/res/layout/recommended_item.xml" value="0.17346014492753623" />

@@ -56,6 +56,54 @@ public class ViewAllActivity extends AppCompatActivity {
             });
         }
 
+        ////////Getting milk type from fstore document//////////////
+
+        if(type != null && type.equalsIgnoreCase("milk")){
+            db.collection("Add Products").whereEqualTo("type","milk").get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            for(DocumentSnapshot documentSnapshot: task.getResult().getDocuments()){
+                                ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
+                                viewAllModelList.add(viewAllModel);
+                                viewAllAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    });
+        }
+
+        ////////Getting fish type from fstore document//////////////
+
+        if(type != null && type.equalsIgnoreCase("fish")){
+            db.collection("Add Products").whereEqualTo("type","fish").get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            for(DocumentSnapshot documentSnapshot: task.getResult().getDocuments()){
+                                ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
+                                viewAllModelList.add(viewAllModel);
+                                viewAllAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    });
+        }
+
+        ////////Getting eggs type from fstore document//////////////
+
+        if(type != null && type.equalsIgnoreCase("eggs")){
+            db.collection("Add Products").whereEqualTo("type","eggs").get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            for(DocumentSnapshot documentSnapshot: task.getResult().getDocuments()){
+                                ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
+                                viewAllModelList.add(viewAllModel);
+                                viewAllAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    });
+        }
+
         ////////Getting Vegetables type from fstore document//////////////
 
         if(type != null && type.equalsIgnoreCase("vegetable")){

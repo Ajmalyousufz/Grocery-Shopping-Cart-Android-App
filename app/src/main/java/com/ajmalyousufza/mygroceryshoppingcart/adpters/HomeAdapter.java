@@ -1,6 +1,7 @@
 package com.ajmalyousufza.mygroceryshoppingcart.adpters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajmalyousufza.mygroceryshoppingcart.R;
+import com.ajmalyousufza.mygroceryshoppingcart.activities.ViewAllActivity;
 import com.ajmalyousufza.mygroceryshoppingcart.models.HomeCategory;
 import com.bumptech.glide.Glide;
 
@@ -38,6 +40,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         Glide.with(context).load(homeCategories.get(position).getImg_src()).into(holder.catImg);
         holder.name.setText(homeCategories.get(position).getName());
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, ViewAllActivity.class);
+            intent.putExtra("type",homeCategories.get(position).getType());
+            context.startActivity(intent);
+        });
 
     }
 
